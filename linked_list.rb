@@ -92,4 +92,41 @@ class LinkedList
       puts 'nil' if current_node.nil?
     end
   end
+
+  def insert_at(value, index)
+    if index.zero?
+      new_node = Node.new(value, @head_node.next_node)
+      @head_node.next_node = new_node
+    elsif index == size - 1
+      current_node = @head_node
+      new_node = Node.new(value, @tail_node)
+      (index - 1).times do
+        current_node = current_node.next_node
+      end
+      current_node.next_node = new_node
+    else
+      current_node = @head_node
+      new_node = Node.new(value)
+      (index - 1).times do
+        current_node = current_node.next_node
+      end
+      new_node.next_node = current_node.next_node
+      current_node.next_node = new_node
+    end
+  end
 end
+
+test = LinkedList.new
+test.append(3)
+test.prepend(12)
+test.append(10)
+test.append(21)
+test.prepend(1)
+test.pop
+test.to_s
+test.insert_at(100, 0)
+test.to_s
+test.insert_at(50, test.size - 1)
+test.to_s
+test.insert_at(75, 3)
+test.to_s
