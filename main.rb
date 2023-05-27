@@ -23,3 +23,8 @@ test.to_s
 test.pop
 test.pop
 test.to_s
+test.remove_at(0)
+test.at(7)
+test.to_s
+test.remove_at(5)
+test.to_s
