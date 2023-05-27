@@ -44,6 +44,8 @@ class LinkedList
   end
 
   def at(index)
+    return puts "Index #{index} is out of range" if index >= size
+
     current_node = @head_node
     index.times do
       return nil if current_node.next_node.nil?
@@ -95,6 +97,18 @@ class LinkedList
     else
       previous_node.next_node = new_node
       new_node.next_node = current_node
+    end
+  end
+
+  def remove_at(index)
+    return puts "Index #{index} is out of range" if index >= size
+
+    current_node = at(index)
+    previous_node = at(index - 1)
+    if index.zero?
+      @head_node = current_node.next_node
+    else
+      previous_node.next_node = current_node.next_node
     end
   end
 end
