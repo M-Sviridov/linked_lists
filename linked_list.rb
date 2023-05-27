@@ -57,12 +57,31 @@ class LinkedList
     nil if size < 1
 
     current_node = @head_node
-    until current_node.next_node == @tail_node
-      puts current_node.next_node.value
-      current_node = current_node.next_node
-    end
+    current_node = current_node.next_node until current_node.next_node == @tail_node
     @tail_node = current_node
     @tail_node.next_node = nil
+  end
+
+  def contains?(value)
+    current_node = @head_node
+    while current_node
+      return true if current_node.value == value
+
+      current_node = current_node.next_node
+    end
+    false
+  end
+
+  def find(value)
+    count = 0
+    current_node = @head_node
+    while current_node
+      return count if current_node.value == value
+
+      count += 1
+      current_node = current_node.next_node
+    end
+    nil
   end
 
   def to_s
@@ -74,14 +93,3 @@ class LinkedList
     end
   end
 end
-
-test = LinkedList.new
-test.append(3)
-test.prepend(12)
-test.append(10)
-test.append(21)
-test.prepend(1)
-test.pop
-test.to_s
-test.at(5)
-test.pop
