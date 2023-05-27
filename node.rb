@@ -2,8 +2,7 @@
 
 # class representing a node in a linked list data structure
 class Node
-  attr_reader :value
-  attr_accessor :next_node
+  attr_accessor :value, :next_node
 
   def initialize(value = nil, next_node = nil)
     @value = value
